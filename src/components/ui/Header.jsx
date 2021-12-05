@@ -22,9 +22,22 @@ const MyLogo = styled("img")(({ theme }) => ({
   },
 }));
 
-const MyTabs = styled("Tabs")(({ theme }) => ({
+const MyTabs = styled(Tabs)(({ theme }) => ({
   display: "flex",
   marginLeft: "auto",
+}));
+
+const MyTab = styled(Tab)(({ theme }) => ({
+  fontFamily: "Raleway",
+  color: alpha("#fff", 0.6),
+  textTransform: "none",
+  fontWeight: "700",
+  fontSize: "0.8rem",
+  padding: "8px",
+
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "0.6rem",
+  },
 }));
 
 function Header(props) {
@@ -34,11 +47,11 @@ function Header(props) {
         <Toolbar disableGutters>
           <MyLogo alt="company logo" src={logo} />
           <MyTabs>
-            <Tab label="Home" />
-            <Tab label="Services" />
-            <Tab label="The Revolution" />
-            <Tab label="About Us" />
-            <Tab label="Contact Us" />
+            <MyTab label="Home" />
+            <MyTab label="Services" />
+            <MyTab label="The Revolution" />
+            <MyTab label="About Us" />
+            <MyTab label="Contact Us" />
           </MyTabs>
         </Toolbar>
       </AppBar>
