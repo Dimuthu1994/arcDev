@@ -46,4 +46,5 @@ export const MyButton = styled(Button)(({ theme }) => ({
   fontFamily: "Pacifico",
   fontSize: "0.8rem",
   textTransform: "none",
+  whiteSpace: "nowrap",
 }));
