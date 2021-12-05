@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, useScrollTrigger } from "@mui/material";
+import { AppBar, Tab, Tabs, Toolbar, useScrollTrigger } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
 import React from "react";
 import logo from "../../assets/logo.svg";
@@ -22,12 +22,24 @@ const MyLogo = styled("img")(({ theme }) => ({
   },
 }));
 
+const MyTabs = styled("Tabs")(({ theme }) => ({
+  display: "flex",
+  marginLeft: "auto",
+}));
+
 function Header(props) {
   return (
     <ElevationScroll>
       <AppBar position="sticky">
         <Toolbar disableGutters>
           <MyLogo alt="company logo" src={logo} />
+          <MyTabs>
+            <Tab label="Home" />
+            <Tab label="Services" />
+            <Tab label="The Revolution" />
+            <Tab label="About Us" />
+            <Tab label="Contact Us" />
+          </MyTabs>
         </Toolbar>
       </AppBar>
     </ElevationScroll>
