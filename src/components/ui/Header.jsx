@@ -1,60 +1,13 @@
-import {
-  AppBar,
-  Button,
-  Tab,
-  Tabs,
-  Toolbar,
-  useScrollTrigger,
-} from "@mui/material";
-import { styled, alpha } from "@mui/material/styles";
+import { AppBar, Toolbar } from "@mui/material";
 import React, { useState } from "react";
 import logo from "../../assets/logo.svg";
-
-function ElevationScroll(props) {
-  const { children } = props;
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 0,
-  });
-
-  return React.cloneElement(children, {
-    elevation: trigger ? 4 : 0,
-  });
-}
-
-const MyLogo = styled("img")(({ theme }) => ({
-  height: "56px",
-  [theme.breakpoints.up("sm")]: {
-    height: "64px",
-  },
-}));
-
-const MyTabs = styled(Tabs)(({ theme }) => ({
-  display: "flex",
-  marginLeft: "auto",
-}));
-
-const MyTab = styled(Tab)(({ theme }) => ({
-  fontFamily: "Raleway",
-  textTransform: "none",
-  fontWeight: "700",
-  fontSize: "0.8rem",
-  padding: "8px",
-
-  [theme.breakpoints.down("sm")]: {
-    fontSize: "0.6rem",
-  },
-}));
-
-const MyButton = styled(Button)(({ theme }) => ({
-  backgroundColor: "#f5b427",
-  borderRadius: "50px",
-  marginLeft: "50px",
-  marginRight: "25px",
-  fontFamily: "Pacifico",
-  fontSize: "0.8rem",
-  textTransform: "none",
-}));
+import {
+  ElevationScroll,
+  MyButton,
+  MyLogo,
+  MyTab,
+  MyTabs,
+} from "./Header.elements";
 
 function Header(props) {
   const [value, setValue] = useState(0);
