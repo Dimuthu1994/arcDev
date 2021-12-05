@@ -8,6 +8,7 @@ import {
   MyTab,
   MyTabs,
 } from "./Header.elements";
+import { Link } from "react-router-dom";
 
 function Header(props) {
   const [value, setValue] = useState(0);
@@ -22,11 +23,11 @@ function Header(props) {
         <Toolbar disableGutters>
           <MyLogo alt="company logo" src={logo} />
           <MyTabs value={value} textColor="inherit" onChange={handleChange}>
-            <MyTab label="Home" />
-            <MyTab label="Services" />
-            <MyTab label="The Revolution" />
-            <MyTab label="About Us" />
-            <MyTab label="Contact Us" />
+            <MyTab component={Link} to="/" label="Home" />
+            <MyTab component={Link} to="/services" label="Services" />
+            <MyTab component={Link} to="/revolutions" label="The Revolution" />
+            <MyTab component={Link} to="/about" label="About Us" />
+            <MyTab component={Link} to="/contacts" label="Contact Us" />
           </MyTabs>
           <MyButton variant="contained">Free Estimate</MyButton>
         </Toolbar>
