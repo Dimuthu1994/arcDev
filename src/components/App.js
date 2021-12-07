@@ -11,12 +11,12 @@ function App() {
         <Switch>
           <Route exact path="/" component={() => <div>Home</div>} />
           <Route exact path="/services" component={() => <div>Services</div>} />
-          <Route path="/customSoftware" component={() => <div>Home</div>} />
           <Route
-            path="/mobileapps"
+            path="/customSoftware"
             component={() => <div>Custom Software</div>}
           />
-          <Route path="/websites" component={() => <div>Mobile Apps</div>} />
+          <Route path="/mobileapps" component={() => <div>Mobile Apps</div>} />
+          <Route path="/websites" component={() => <div>Web sites</div>} />
           <Route
             path="/revolutions"
             component={() => <div>The Revoluton</div>}

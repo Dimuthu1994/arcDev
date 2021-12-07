@@ -8,11 +8,28 @@ import {
   MyTab,
   MyTabs,
 } from "./Header.elements";
+
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+
 import { Link } from "react-router-dom";
 
 function Header(props) {
   const [value, setValue] = useState(0);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [open, setOpen] = useState(false);
 
+  //Menu
+  const handleClick = (e) => {
+    setAnchorEl(e.currentTarget);
+    setOpen(true);
+  };
+  const handleClose = (e) => {
+    setAnchorEl(null);
+    setOpen(false);
+  };
+
+  //Tabs
   const handleChange = (e, value) => {
     setValue(value);
   };
@@ -30,6 +47,12 @@ function Header(props) {
       setValue(4);
     } else if (window.location.pathname === "/estimate" && value !== 5) {
       setValue(5);
+    } else if (window.location.pathname === "/customSoftware" && value !== 1) {
+      setValue(1);
+    } else if (window.location.pathname === "/mobileapps" && value !== 1) {
+      setValue(1);
+    } else if (window.location.pathname === "/websites" && value !== 1) {
+      setValue(1);
     }
   }, [value]);
 
@@ -48,7 +71,14 @@ function Header(props) {
           </Button>
           <MyTabs value={value} textColor="inherit" onChange={handleChange}>
             <MyTab component={Link} to="/" label="Home" />
-            <MyTab component={Link} to="/services" label="Services" />
+            <MyTab
+              component={Link}
+              to="/services"
+              label="Services"
+              aria-owns={anchorEl ? "simple-menu" : undefined}
+              aria-haspopup={anchorEl ? "true" : undefined}
+              onMouseOver={(e) => handleClick(e)}
+            />
             <MyTab component={Link} to="/revolutions" label="The Revolution" />
             <MyTab component={Link} to="/about" label="About Us" />
             <MyTab component={Link} to="/contacts" label="Contact Us" />
@@ -56,6 +86,55 @@ function Header(props) {
           <MyButton component={Link} to="/estimate" variant="contained">
             Free Estimate
           </MyButton>
+
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{ onMouseLeave: handleClose }}
+          >
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                setValue(1);
+              }}
+              component={Link}
+              to="/services"
+            >
+              Services
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                setValue(1);
+              }}
+              component={Link}
+              to="/customSoftware"
+            >
+              Custom Software Development
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                setValue(1);
+              }}
+              component={Link}
+              to="/mobileapps"
+            >
+              Mobile App Development
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                setValue(1);
+              }}
+              component={Link}
+              to="/websites"
+            >
+              Website Development
+            </MenuItem>
+          </Menu>
         </Toolbar>
       </AppBar>
     </ElevationScroll>
