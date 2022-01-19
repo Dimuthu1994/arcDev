@@ -11,8 +11,32 @@ import {
 
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-
+import { styled, alpha } from "@mui/material/styles";
 import { Link } from "react-router-dom";
+
+const MyMenu = styled(Menu)(({ theme }) => ({
+  "& .MuiMenu-paper": {
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.common.white,
+    borderRadius: "0px",
+  },
+}));
+
+const MyMenuItem = styled(MenuItem)(({ theme }) => ({
+  fontFamily: "Raleway",
+  textTransform: "none",
+  fontWeight: "700",
+  fontSize: "0.8rem",
+  opacity: 0.7,
+
+  "&:hover": {
+    opacity: 1,
+  },
+
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "0.6rem",
+  },
+}));
 
 function Header(props) {
   const [value, setValue] = useState(0);
@@ -87,14 +111,14 @@ function Header(props) {
             Free Estimate
           </MyButton>
 
-          <Menu
+          <MyMenu
             id="simple-menu"
             anchorEl={anchorEl}
             open={open}
             onClose={handleClose}
             MenuListProps={{ onMouseLeave: handleClose }}
           >
-            <MenuItem
+            <MyMenuItem
               onClick={() => {
                 handleClose();
                 setValue(1);
@@ -103,8 +127,8 @@ function Header(props) {
               to="/services"
             >
               Services
-            </MenuItem>
-            <MenuItem
+            </MyMenuItem>
+            <MyMenuItem
               onClick={() => {
                 handleClose();
                 setValue(1);
@@ -113,8 +137,8 @@ function Header(props) {
               to="/customSoftware"
             >
               Custom Software Development
-            </MenuItem>
-            <MenuItem
+            </MyMenuItem>
+            <MyMenuItem
               onClick={() => {
                 handleClose();
                 setValue(1);
@@ -123,8 +147,8 @@ function Header(props) {
               to="/mobileapps"
             >
               Mobile App Development
-            </MenuItem>
-            <MenuItem
+            </MyMenuItem>
+            <MyMenuItem
               onClick={() => {
                 handleClose();
                 setValue(1);
@@ -133,8 +157,8 @@ function Header(props) {
               to="/websites"
             >
               Website Development
-            </MenuItem>
-          </Menu>
+            </MyMenuItem>
+          </MyMenu>
         </Toolbar>
       </AppBar>
     </ElevationScroll>
