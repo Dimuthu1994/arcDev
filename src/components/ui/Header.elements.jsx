@@ -3,6 +3,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { styled, alpha } from "@mui/material/styles";
 import React from "react";
+import { IconButton } from "@mui/material";
 
 export function ElevationScroll(props) {
   const { children } = props;
@@ -34,10 +35,6 @@ export const MyTab = styled(Tab)(({ theme }) => ({
   fontWeight: "700",
   fontSize: "0.8rem",
   padding: " 8px",
-
-  [theme.breakpoints.down("sm")]: {
-    fontSize: "0.6rem",
-  },
 }));
 
 export const MyButton = styled(Button)(({ theme }) => ({
@@ -75,5 +72,17 @@ export const MyMenuItem = styled(MenuItem)(({ theme }) => ({
 
   [theme.breakpoints.down("sm")]: {
     fontSize: "0.6rem",
+  },
+  "&.Mui-selected": {
+    backgroundColor: "#1f34ad",
+  },
+}));
+
+export const MyDrawerIconContainer = styled(IconButton)(({ theme }) => ({
+  color: theme.palette.common.white,
+  marginLeft: "auto",
+  marginRight: "5px",
+  "&:hover": {
+    backgroundColor: "transparent",
   },
 }));
