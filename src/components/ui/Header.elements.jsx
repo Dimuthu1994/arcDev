@@ -1,4 +1,6 @@
 import { Button, Tab, Tabs, useScrollTrigger } from "@mui/material";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
 import { styled, alpha } from "@mui/material/styles";
 import React from "react";
 
@@ -47,4 +49,31 @@ export const MyButton = styled(Button)(({ theme }) => ({
   fontSize: "0.8rem",
   textTransform: "none",
   whiteSpace: "nowrap",
+}));
+
+// Styles apply to menu
+// menu created using paper
+// styles applies to paper
+export const MyMenu = styled(Menu)(({ theme }) => ({
+  "& .MuiMenu-paper": {
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.common.white,
+    borderRadius: "0px",
+  },
+}));
+
+export const MyMenuItem = styled(MenuItem)(({ theme }) => ({
+  fontFamily: "Raleway",
+  textTransform: "none",
+  fontWeight: "700",
+  fontSize: "0.8rem",
+  opacity: 0.7,
+
+  "&:hover": {
+    opacity: 1,
+  },
+
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "0.6rem",
+  },
 }));

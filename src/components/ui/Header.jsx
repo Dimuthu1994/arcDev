@@ -1,48 +1,28 @@
 import { AppBar, Button, Toolbar } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import logo from "../../assets/logo.svg";
+import { Link } from "react-router-dom";
 import {
   ElevationScroll,
   MyButton,
   MyLogo,
   MyTab,
   MyTabs,
+  MyMenu,
+  MyMenuItem,
 } from "./Header.elements";
-
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
-import { styled, alpha } from "@mui/material/styles";
-import { Link } from "react-router-dom";
-
-const MyMenu = styled(Menu)(({ theme }) => ({
-  "& .MuiMenu-paper": {
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.common.white,
-    borderRadius: "0px",
-  },
-}));
-
-const MyMenuItem = styled(MenuItem)(({ theme }) => ({
-  fontFamily: "Raleway",
-  textTransform: "none",
-  fontWeight: "700",
-  fontSize: "0.8rem",
-  opacity: 0.7,
-
-  "&:hover": {
-    opacity: 1,
-  },
-
-  [theme.breakpoints.down("sm")]: {
-    fontSize: "0.6rem",
-  },
-}));
 
 function Header(props) {
   const [value, setValue] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
-
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const menuOption = [
+    { name: "Services", link: "/services" },
+    { name: "Custom Software Development", link: "/customSoftware" },
+    { name: "Mobile App Development", link: "/mobileapps" },
+    { name: "Website Development", link: "/websites" },
+  ];
   //Menu
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget);
@@ -51,6 +31,12 @@ function Header(props) {
   const handleClose = (e) => {
     setAnchorEl(null);
     setOpen(false);
+  };
+  //menu item select
+  const handleMenuItemClick = (e, i) => {
+    setAnchorEl(null);
+    setOpen(false);
+    setSelectedIndex(i);
   };
 
   //Tabs
@@ -117,47 +103,25 @@ function Header(props) {
             open={open}
             onClose={handleClose}
             MenuListProps={{ onMouseLeave: handleClose }}
+            elevation={0}
           >
-            <MyMenuItem
-              onClick={() => {
-                handleClose();
-                setValue(1);
-              }}
-              component={Link}
-              to="/services"
-            >
-              Services
-            </MyMenuItem>
-            <MyMenuItem
-              onClick={() => {
-                handleClose();
-                setValue(1);
-              }}
-              component={Link}
-              to="/customSoftware"
-            >
-              Custom Software Development
-            </MyMenuItem>
-            <MyMenuItem
-              onClick={() => {
-                handleClose();
-                setValue(1);
-              }}
-              component={Link}
-              to="/mobileapps"
-            >
-              Mobile App Development
-            </MyMenuItem>
-            <MyMenuItem
-              onClick={() => {
-                handleClose();
-                setValue(1);
-              }}
-              component={Link}
-              to="/websites"
-            >
-              Website Development
-            </MyMenuItem>
+            {menuOption.map((option, i) => {
+              return (
+                <MyMenuItem
+                  key={i}
+                  onClick={(e) => {
+                    handleClose();
+                    setValue(1);
+                    handleMenuItemClick(e, i);
+                  }}
+                  component={Link}
+                  to={option.link}
+                  selected={i === selectedIndex && value === 1}
+                >
+                  {option.name}
+                </MyMenuItem>
+              );
+            })}
           </MyMenu>
         </Toolbar>
       </AppBar>
