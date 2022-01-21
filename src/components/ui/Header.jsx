@@ -57,10 +57,17 @@ function Header(props) {
 
   const routes = [
     { name: "Home", link: "/", activeIndex: 0 },
-    { name: "Services", link: "/services", activeIndex: 1 },
-    { name: "The Revolution", link: "/revolution", activeIndex: 2 },
+    {
+      name: "Services",
+      link: "/services",
+      activeIndex: 1,
+      ariaOwns: anchorEl ? "simple-menu" : undefined,
+      ariaPopup: anchorEl ? "true" : undefined,
+      mouseOver: (e) => handleClick(e),
+    },
+    { name: "The Revolution", link: "/revolutions", activeIndex: 2 },
     { name: "About Us", link: "/about", activeIndex: 3 },
-    { name: "Contact Us", link: "/contact", activeIndex: 4 },
+    { name: "Contact Us", link: "/contacts", activeIndex: 4 },
   ];
 
   const menuOption = [
@@ -97,23 +104,22 @@ function Header(props) {
         }
       }
     });
-  }, [value, selectedIndex]);
+  }, [value, selectedIndex, menuOption, routes]);
 
   const tabs = (
     <React.Fragment>
       <MyTabs value={value} textColor="inherit" onChange={handleChange}>
-        <MyTab component={Link} to="/" label="Home" />
-        <MyTab
-          component={Link}
-          to="/services"
-          label="Services"
-          aria-owns={anchorEl ? "simple-menu" : undefined}
-          aria-haspopup={anchorEl ? "true" : undefined}
-          onMouseOver={(e) => handleClick(e)}
-        />
-        <MyTab component={Link} to="/revolutions" label="The Revolution" />
-        <MyTab component={Link} to="/about" label="About Us" />
-        <MyTab component={Link} to="/contacts" label="Contact Us" />
+        {routes.map((route, index) => (
+          <MyTab
+            key={`${route}${index}`}
+            component={Link}
+            to={route.link}
+            label={route.name}
+            aria-owns={route.ariaOwns}
+            aria-haspopup={route.ariaPopup}
+            onMouseOver={route.mouseOver}
+          />
+        ))}
       </MyTabs>
       <MyButton component={Link} to="/estimate" variant="contained">
         Free Estimate
@@ -156,66 +162,22 @@ function Header(props) {
         onOpen={() => setOpenDrawer(true)}
       >
         <List disablePadding>
-          <MyListItemButton
-            component={Link}
-            to="/"
-            divider
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(0);
-            }}
-            selected={value === 0}
-          >
-            <ListItemText>Home</ListItemText>
-          </MyListItemButton>
-          <MyListItemButton
-            component={Link}
-            to="/services"
-            divider
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(1);
-            }}
-            selected={value === 1}
-          >
-            <ListItemText>Services</ListItemText>
-          </MyListItemButton>
-          <MyListItemButton
-            component={Link}
-            to="/revolution"
-            divider
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(2);
-            }}
-            selected={value === 2}
-          >
-            <ListItemText>The Revolution</ListItemText>
-          </MyListItemButton>
-          <MyListItemButton
-            component={Link}
-            to="/about"
-            divider
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(3);
-            }}
-            selected={value === 3}
-          >
-            <ListItemText>About Us</ListItemText>
-          </MyListItemButton>
-          <MyListItemButton
-            component={Link}
-            to="/contact"
-            divider
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(4);
-            }}
-            selected={value === 4}
-          >
-            <ListItemText>Contact Us</ListItemText>
-          </MyListItemButton>
+          {routes.map((route) => (
+            <MyListItemButton
+              key={`${route}${route.activeIndex}`}
+              component={Link}
+              to={route.link}
+              divider
+              onClick={() => {
+                setOpenDrawer(false);
+                setValue(route.activeIndex);
+              }}
+              selected={value === route.activeIndex}
+            >
+              <ListItemText>{route.name}</ListItemText>
+            </MyListItemButton>
+          ))}
+
           <ListItemButton
             sx={{
               backgroundColor: "#f5b427",
