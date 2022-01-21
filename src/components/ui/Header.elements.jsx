@@ -4,6 +4,8 @@ import Menu from "@mui/material/Menu";
 import { styled, alpha } from "@mui/material/styles";
 import React from "react";
 import { IconButton } from "@mui/material";
+import SwipeableDrawer from "@mui/material/SwipeableDrawer";
+import ListItemButton from "@mui/material/ListItemButton";
 
 export function ElevationScroll(props) {
   const { children } = props;
@@ -84,5 +86,24 @@ export const MyDrawerIconContainer = styled(IconButton)(({ theme }) => ({
   marginRight: "5px",
   "&:hover": {
     backgroundColor: "transparent",
+  },
+}));
+
+export const MySwipeableDrawer = styled(SwipeableDrawer)(({ theme }) => ({
+  "& .MuiDrawer-paper": {
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.common.white,
+  },
+}));
+
+export const MyListItemButton = styled(ListItemButton)(({ theme }) => ({
+  opacity: 0.7,
+  color: "White",
+  "&.Mui-selected": {
+    backgroundColor: "#1f34ad",
+    opacity: 1,
+  },
+  "&:hover": {
+    opacity: 1,
   },
 }));

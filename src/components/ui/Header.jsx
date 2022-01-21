@@ -4,11 +4,10 @@ import logo from "../../assets/logo.svg";
 import { Link } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import SwipeableDrawer from "@mui/material/SwipeableDrawer";
+
 import MenuIcon from "@mui/icons-material/Menu";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import {
   ElevationScroll,
@@ -19,6 +18,8 @@ import {
   MyMenu,
   MyMenuItem,
   MyDrawerIconContainer,
+  MySwipeableDrawer,
+  MyListItemButton,
 } from "./Header.elements";
 
 function Header(props) {
@@ -30,12 +31,6 @@ function Header(props) {
   const [openMenu, setOpenMenu] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [openDrawer, setOpenDrawer] = useState(false);
-  const menuOption = [
-    { name: "Services", link: "/services" },
-    { name: "Custom Software Development", link: "/customSoftware" },
-    { name: "Mobile App Development", link: "/mobileapps" },
-    { name: "Website Development", link: "/websites" },
-  ];
 
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
@@ -60,31 +55,49 @@ function Header(props) {
     setValue(newValue);
   };
 
+  const routes = [
+    { name: "Home", link: "/", activeIndex: 0 },
+    { name: "Services", link: "/services", activeIndex: 1 },
+    { name: "The Revolution", link: "/revolution", activeIndex: 2 },
+    { name: "About Us", link: "/about", activeIndex: 3 },
+    { name: "Contact Us", link: "/contact", activeIndex: 4 },
+  ];
+
+  const menuOption = [
+    { name: "Services", link: "/services", activeIndex: 1, selectedIndex: 0 },
+    {
+      name: "Custom Software Development",
+      link: "/customSoftware",
+      activeIndex: 1,
+      selectedIndex: 1,
+    },
+    {
+      name: "Mobile App Development",
+      link: "/mobileapps",
+      activeIndex: 1,
+      selectedIndex: 2,
+    },
+    {
+      name: "Website Development",
+      link: "/websites",
+      activeIndex: 1,
+      selectedIndex: 3,
+    },
+  ];
+
   useEffect(() => {
-    if (window.location.pathname === "/" && value !== 0) {
-      setValue(0);
-    } else if (window.location.pathname === "/services" && value !== 1) {
-      setValue(1);
-      setSelectedIndex(0);
-    } else if (window.location.pathname === "/revolutions" && value !== 2) {
-      setValue(2);
-    } else if (window.location.pathname === "/about" && value !== 3) {
-      setValue(3);
-    } else if (window.location.pathname === "/contacts" && value !== 4) {
-      setValue(4);
-    } else if (window.location.pathname === "/estimate" && value !== 5) {
-      setValue(5);
-    } else if (window.location.pathname === "/customSoftware" && value !== 1) {
-      setValue(1);
-      setSelectedIndex(1);
-    } else if (window.location.pathname === "/mobileapps" && value !== 1) {
-      setValue(1);
-      setSelectedIndex(2);
-    } else if (window.location.pathname === "/websites" && value !== 1) {
-      setValue(1);
-      setSelectedIndex(3);
-    }
-  }, [value]);
+    [...routes, ...menuOption].forEach((route) => {
+      if (
+        window.location.pathname === route.link &&
+        value !== route.activeIndex
+      ) {
+        setValue(route.activeIndex);
+        if (route.selectedIndex && selectedIndex !== route.selectedIndex) {
+          setSelectedIndex(route.selectedIndex);
+        }
+      }
+    });
+  }, [value, selectedIndex]);
 
   const tabs = (
     <React.Fragment>
@@ -135,7 +148,7 @@ function Header(props) {
 
   const drawer = (
     <React.Fragment>
-      <SwipeableDrawer
+      <MySwipeableDrawer
         disableBackdropTransition={!iOS}
         disableDiscovery={iOS}
         open={openDrawer}
@@ -143,56 +156,83 @@ function Header(props) {
         onOpen={() => setOpenDrawer(true)}
       >
         <List disablePadding>
-          <ListItemButton
+          <MyListItemButton
             component={Link}
             to="/"
             divider
-            onClick={() => setOpenDrawer(false)}
+            onClick={() => {
+              setOpenDrawer(false);
+              setValue(0);
+            }}
+            selected={value === 0}
           >
             <ListItemText>Home</ListItemText>
-          </ListItemButton>
-          <ListItemButton
+          </MyListItemButton>
+          <MyListItemButton
             component={Link}
             to="/services"
             divider
-            onClick={() => setOpenDrawer(false)}
+            onClick={() => {
+              setOpenDrawer(false);
+              setValue(1);
+            }}
+            selected={value === 1}
           >
             <ListItemText>Services</ListItemText>
-          </ListItemButton>
-          <ListItemButton
+          </MyListItemButton>
+          <MyListItemButton
             component={Link}
             to="/revolution"
             divider
-            onClick={() => setOpenDrawer(false)}
+            onClick={() => {
+              setOpenDrawer(false);
+              setValue(2);
+            }}
+            selected={value === 2}
           >
             <ListItemText>The Revolution</ListItemText>
-          </ListItemButton>
-          <ListItemButton
+          </MyListItemButton>
+          <MyListItemButton
             component={Link}
             to="/about"
             divider
-            onClick={() => setOpenDrawer(false)}
+            onClick={() => {
+              setOpenDrawer(false);
+              setValue(3);
+            }}
+            selected={value === 3}
           >
             <ListItemText>About Us</ListItemText>
-          </ListItemButton>
-          <ListItemButton
+          </MyListItemButton>
+          <MyListItemButton
             component={Link}
             to="/contact"
             divider
-            onClick={() => setOpenDrawer(false)}
+            onClick={() => {
+              setOpenDrawer(false);
+              setValue(4);
+            }}
+            selected={value === 4}
           >
             <ListItemText>Contact Us</ListItemText>
-          </ListItemButton>
+          </MyListItemButton>
           <ListItemButton
+            sx={{
+              backgroundColor: "#f5b427",
+            }}
             component={Link}
             to="/estimate"
             divider
-            onClick={() => setOpenDrawer(false)}
+            onClick={() => {
+              setOpenDrawer(false);
+              setValue(5);
+            }}
+            selected={value === 5}
           >
             <ListItemText>Free Estimate</ListItemText>
           </ListItemButton>
         </List>
-      </SwipeableDrawer>
+      </MySwipeableDrawer>
       <MyDrawerIconContainer
         onClick={() => setOpenDrawer(!openDrawer)}
         disableRipple
