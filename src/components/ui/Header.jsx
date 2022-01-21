@@ -136,7 +136,7 @@ function Header(props) {
       >
         {menuOption.map((option, i) => (
           <MyMenuItem
-            key={option}
+            key={`${option}${i}`}
             component={Link}
             to={option.link}
             onClick={(e) => {
