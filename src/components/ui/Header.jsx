@@ -1,4 +1,4 @@
-import { AppBar, Button, Toolbar } from "@mui/material";
+import { AppBar, Box, Button, Toolbar } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import logo from "../../assets/logo.svg";
 import { Link } from "react-router-dom";
@@ -132,6 +132,7 @@ function Header(props) {
         onClose={handleClose}
         MenuListProps={{ onMouseLeave: handleClose }}
         elevation={0}
+        keepMounted // better for search engine optization
       >
         {menuOption.map((option, i) => (
           <MyMenuItem
@@ -161,6 +162,7 @@ function Header(props) {
         onClose={() => setOpenDrawer(false)}
         onOpen={() => setOpenDrawer(true)}
       >
+        <Box sx={{ marginTop: "64px" }} />
         <List disablePadding>
           {routes.map((route) => (
             <MyListItemButton
@@ -206,7 +208,7 @@ function Header(props) {
 
   return (
     <ElevationScroll>
-      <AppBar position="sticky">
+      <AppBar position="sticky" sx={{ zIndex: theme.zIndex.modal + 1 }}>
         <Toolbar disableGutters>
           <Button
             onClick={() => setValue(0)}
