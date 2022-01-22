@@ -1,4 +1,5 @@
 import { styled } from "@mui/material/styles";
+import { Grid } from "@mui/material";
 
 export const MyFooter = styled("footer")(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
@@ -16,4 +17,12 @@ export const MyAdornment = styled("img")(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
     width: "15em",
   },
+}));
+
+export const MyGrid = styled(Grid)(({ theme }) => ({
+  color: "white",
+  fontFamily: "Arial",
+  fontSize: "0.75rem",
+  fontWeight: "bold",
+  textDecoration: "none",
 }));
