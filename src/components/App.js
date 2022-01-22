@@ -1,5 +1,6 @@
 import { CssBaseline } from "@mui/material";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Footer from "./ui/Footer";
 import Header from "./ui/Header";
 
 function App() {
@@ -9,7 +10,11 @@ function App() {
         <CssBaseline />
         <Header />
         <Switch>
-          <Route exact path="/" component={() => <div>Home</div>} />
+          <Route
+            exact
+            path="/"
+            component={() => <div style={{ height: "2000px" }}>Home</div>}
+          />
           <Route exact path="/services" component={() => <div>Services</div>} />
           <Route
             path="/customSoftware"
@@ -25,6 +30,7 @@ function App() {
           <Route path="/contacts" component={() => <div>Contacts Us</div>} />
           <Route path="/estimate" component={() => <div>Estimate</div>} />
         </Switch>
+        <Footer />
       </BrowserRouter>
     </>
   );

@@ -20,6 +20,7 @@ import {
   MyDrawerIconContainer,
   MySwipeableDrawer,
   MyListItemButton,
+  MyBox,
 } from "./Header.elements";
 
 function Header(props) {
@@ -162,7 +163,7 @@ function Header(props) {
         onClose={() => setOpenDrawer(false)}
         onOpen={() => setOpenDrawer(true)}
       >
-        <Box sx={{ marginTop: "64px" }} />
+        <MyBox />
         <List disablePadding>
           {routes.map((route) => (
             <MyListItemButton

@@ -1,7 +1,7 @@
-import { Button, Tab, Tabs, useScrollTrigger } from "@mui/material";
+import { Box, Button, Tab, Tabs, useScrollTrigger } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import { styled, alpha } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import React from "react";
 import { IconButton } from "@mui/material";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
@@ -23,6 +23,12 @@ export const MyLogo = styled("img")(({ theme }) => ({
   height: "56px",
   [theme.breakpoints.up("sm")]: {
     height: "64px",
+  },
+}));
+export const MyBox = styled(Box)(({ theme }) => ({
+  marginTop: "56px",
+  [theme.breakpoints.up("sm")]: {
+    marginTop: "64px",
   },
 }));
 
