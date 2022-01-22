@@ -26,3 +26,22 @@ export const MyGrid = styled(Grid)(({ theme }) => ({
   fontWeight: "bold",
   textDecoration: "none",
 }));
+
+export const MyIconContainer = styled(Grid)(({ theme }) => ({
+  position: "absolute",
+  marginTop: "-5em",
+  right: "1em",
+  [theme.breakpoints.down("sm")]: {
+    marginTop: "-3em",
+  },
+}));
+
+export const MyIcon = styled("img")(({ theme }) => ({
+  height: "4em",
+  width: "4em",
+
+  [theme.breakpoints.down("sm")]: {
+    width: "2em",
+    height: "2em",
+  },
+}));

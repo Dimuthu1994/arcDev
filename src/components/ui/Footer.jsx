@@ -1,10 +1,19 @@
 import React from "react";
-import { MyFooter, MyAdornment, MyGrid } from "./Footer.elements";
+import {
+  MyFooter,
+  MyAdornment,
+  MyGrid,
+  MyIconContainer,
+  MyIcon,
+} from "./Footer.elements";
 import footerAdornment from "../../assets/Footer Adornment.svg";
 import { Link } from "react-router-dom";
 import { Hidden } from "@mui/material";
+import facebook from "../../assets/facebook.svg";
+import twitter from "../../assets/twitter.svg";
+import instagram from "../../assets/instagram.svg";
 
-function Footer({ value, setValue, selectedIndex, setSelectedIndex }) {
+function Footer({ setValue, setSelectedIndex }) {
   return (
     <MyFooter>
       <Hidden mdDown>
@@ -147,7 +156,24 @@ function Footer({ value, setValue, selectedIndex, setSelectedIndex }) {
           </MyGrid>
         </MyGrid>
       </Hidden>
+
       <MyAdornment src={footerAdornment} alt="black decorative slash" />
+      <MyIconContainer
+        container
+        direction="row"
+        justifyContent="flex-end"
+        spacing={2}
+      >
+        <MyGrid item>
+          <MyIcon alt="facebook logo" src={facebook} />
+        </MyGrid>
+        <MyGrid item>
+          <MyIcon alt="twitter logo" src={twitter} />
+        </MyGrid>
+        <MyGrid item>
+          <MyIcon alt="instagram logo" src={instagram} />
+        </MyGrid>
+      </MyIconContainer>
     </MyFooter>
   );
 }
