@@ -2,13 +2,21 @@ import { CssBaseline } from "@mui/material";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Footer from "./ui/Footer";
 import Header from "./ui/Header";
+import { useState } from "react";
 
 function App() {
+  const [value, setValue] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(0);
   return (
     <>
       <BrowserRouter>
         <CssBaseline />
-        <Header />
+        <Header
+          value={value}
+          setValue={setValue}
+          selectedIndex={selectedIndex}
+          setSelectedIndex={setSelectedIndex}
+        />
         <Switch>
           <Route
             exact
@@ -30,7 +38,12 @@ function App() {
           <Route path="/contacts" component={() => <div>Contacts Us</div>} />
           <Route path="/estimate" component={() => <div>Estimate</div>} />
         </Switch>
-        <Footer />
+        <Footer
+          value={value}
+          setValue={setValue}
+          selectedIndex={selectedIndex}
+          setSelectedIndex={setSelectedIndex}
+        />
       </BrowserRouter>
     </>
   );

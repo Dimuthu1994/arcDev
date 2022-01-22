@@ -23,14 +23,14 @@ import {
   MyBox,
 } from "./Header.elements";
 
-function Header(props) {
+function Header({ value, setValue, selectedIndex, setSelectedIndex }) {
   const iOS =
     typeof navigator !== "undefined" &&
     /iPad|iPhone|iPod/.test(navigator.userAgent);
-  const [value, setValue] = useState(0);
+
   const [anchorEl, setAnchorEl] = useState(null);
   const [openMenu, setOpenMenu] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0);
+
   const [openDrawer, setOpenDrawer] = useState(false);
 
   const theme = useTheme();
