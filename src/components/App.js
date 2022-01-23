@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Footer from "./ui/Footer";
 import Header from "./ui/Header";
 import { useState } from "react";
+import LandingPage from "./Pages/LandingPage";
 
 function App() {
   const [value, setValue] = useState(0);
@@ -18,11 +19,7 @@ function App() {
           setSelectedIndex={setSelectedIndex}
         />
         <Switch>
-          <Route
-            exact
-            path="/"
-            component={() => <div style={{ height: "2000px" }}>Home</div>}
-          />
+          <Route exact path="/" component={LandingPage} />
           <Route exact path="/services" component={() => <div>Services</div>} />
           <Route
             path="/customSoftware"
