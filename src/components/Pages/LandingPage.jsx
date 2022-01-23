@@ -2,10 +2,17 @@ import React from "react";
 import Lottie from "react-lottie";
 import animationData from "../../animations/landinganimation/data";
 import { Grid } from "@mui/material";
-import { Button } from "@mui/material";
 import ButtonArrow from "../ui/5.1 ButtonArrow";
-import { Typography } from "@mui/material";
-import { LandingTypography } from "./Page.elements";
+import theme from "../ui/theme";
+
+import {
+  Annimation,
+  EstimateButton,
+  HeroTextContainer,
+  LandingTypography,
+  LearnButton,
+  MainContainer,
+} from "./Page.elements";
 
 export default function LandingPage() {
   const defaultOptions = {
@@ -19,7 +26,7 @@ export default function LandingPage() {
 
   return (
     <>
-      <Grid container direction="column">
+      <MainContainer container direction="column">
         <Grid item>
           <Grid
             container
@@ -27,39 +34,32 @@ export default function LandingPage() {
             justifyContent="flex-end"
             alignItems="center"
           >
-            <Grid sm item>
+            <HeroTextContainer sm item>
               <LandingTypography align="center" variant="h2">
                 Bringing West Coast Technology
                 <br />
                 to the Midwest
               </LandingTypography>
-              <Grid container>
+              <Grid container justifyContent="center" sx={{ marginTop: "1em" }}>
                 <Grid item>
-                  <Button variant="contained">Free Estimate</Button>
+                  <EstimateButton variant="contained">
+                    Free Estimate
+                  </EstimateButton>
                 </Grid>
                 <Grid item>
-                  <Button variant="outlined">
-                    Learn More
-                    <ButtonArrow width={15} height={15} fill="red" />
-                  </Button>
+                  <LearnButton variant="outlined">
+                    <span style={{ marginRight: 10 }}>Learn More</span>
+                    <ButtonArrow width={15} height={15} fill="blue" />
+                  </LearnButton>
                 </Grid>
               </Grid>
-            </Grid>
-            <Grid
-              sm
-              item
-              style={{
-                maxWidth: "50em",
-                minWidth: "21em",
-                marginTop: "2em",
-                marginLeft: "10%",
-              }}
-            >
+            </HeroTextContainer>
+            <Annimation sm item>
               <Lottie options={defaultOptions} height={"100%"} width={"100%"} />
-            </Grid>
+            </Annimation>
           </Grid>
         </Grid>
-      </Grid>
+      </MainContainer>
     </>
   );
 }

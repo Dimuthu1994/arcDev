@@ -54,6 +54,10 @@ export const MyButton = styled(Button)(({ theme }) => ({
   fontSize: "0.8rem",
   textTransform: "none",
   whiteSpace: "nowrap",
+
+  "&:hover": {
+    backgroundColor: "#f7c04b",
+  },
 }));
 
 // Styles apply to menu
